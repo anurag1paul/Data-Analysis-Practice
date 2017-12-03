@@ -76,8 +76,7 @@ def answer_four():
 # ## Part 2
 
 # ### Question 5
-# Which state has the most counties in it? (hint: consider the sumlevel key
-# carefully! You'll need this for future questions too...)
+# Which state has the most counties in it?
 #
 # *This function should return a single string value.*
 

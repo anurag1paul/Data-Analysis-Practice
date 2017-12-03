@@ -3,6 +3,6 @@ Assignments and Data Capstone Project work for a course involving learning numpy
 
 # Contents
 
-- Assignment 2
-- Assignment 3
-- Data Capstone Project 
+- Assignment 2 - working with Olympics Data in part-1 and Census data in part-2
+- Assignment 3 - working with energy data
+- Data Capstone Project - Hypothesis Testing

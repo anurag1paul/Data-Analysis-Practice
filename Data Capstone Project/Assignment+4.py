@@ -1,18 +1,6 @@
-
-# coding: utf-8
-
-# ---
-# 
-# _You are currently looking at **version 1.1** of this notebook. To download notebooks and datafiles, as well as get help on Jupyter notebooks in the Coursera platform, visit the [Jupyter Notebook FAQ](https://www.coursera.org/learn/python-data-analysis/resources/0dhYG) course resource._
-# 
-# ---
-
-# In[1]:
-
 import pandas as pd
 import numpy as np
 from scipy.stats import ttest_ind
-
 
 # # Assignment 4 - Hypothesis Testing
 # This assignment requires more individual learning than previous assignments - you are encouraged to check out the [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/) to find functions or methods you might not have used yet, or ask questions on [Stack Overflow](http://stackoverflow.com/) and tag them as pandas and python related. And of course, the discussion forums are open for interaction with your peers and the course staff.
@@ -32,16 +20,12 @@ from scipy.stats import ttest_ind
 # 
 # Each function in this assignment below is worth 10%, with the exception of ```run_ttest()```, which is worth 50%.
 
-# In[2]:
-
 # Use this dictionary to map state names to two letter acronyms
 states = {'OH': 'Ohio', 'KY': 'Kentucky', 'AS': 'American Samoa', 'NV': 'Nevada', 'WY': 'Wyoming', 'NA': 'National', 'AL': 'Alabama', 'MD': 'Maryland', 'AK': 'Alaska', 'UT': 'Utah', 'OR': 'Oregon', 'MT': 'Montana', 'IL': 'Illinois', 'TN': 'Tennessee', 'DC': 'District of Columbia', 'VT': 'Vermont', 'ID': 'Idaho', 'AR': 'Arkansas', 'ME': 'Maine', 'WA': 'Washington', 'HI': 'Hawaii', 'WI': 'Wisconsin', 'MI': 'Michigan', 'IN': 'Indiana', 'NJ': 'New Jersey', 'AZ': 'Arizona', 'GU': 'Guam', 'MS': 'Mississippi', 'PR': 'Puerto Rico', 'NC': 'North Carolina', 'TX': 'Texas', 'SD': 'South Dakota', 'MP': 'Northern Mariana Islands', 'IA': 'Iowa', 'MO': 'Missouri', 'CT': 'Connecticut', 'WV': 'West Virginia', 'SC': 'South Carolina', 'LA': 'Louisiana', 'KS': 'Kansas', 'NY': 'New York', 'NE': 'Nebraska', 'OK': 'Oklahoma', 'FL': 'Florida', 'CA': 'California', 'CO': 'Colorado', 'PA': 'Pennsylvania', 'DE': 'Delaware', 'NM': 'New Mexico', 'RI': 'Rhode Island', 'MN': 'Minnesota', 'VI': 'Virgin Islands', 'NH': 'New Hampshire', 'MA': 'Massachusetts', 'GA': 'Georgia', 'ND': 'North Dakota', 'VA': 'Virginia'}
 university_towns_file = 'university_towns.txt'
 zillow_research_file = 'City_Zhvi_AllHomes.csv'
 gdp_data_file = 'gdplev.xls'
 
-
-# In[3]:
 
 def get_list_of_university_towns():
     '''Returns a DataFrame of towns and the states they are in from the 
@@ -68,8 +52,6 @@ def get_list_of_university_towns():
     return uni_df
 
 
-# In[4]:
-
 def get_gdp_df():
     gdp_df = (pd.read_excel(gdp_data_file, header=4, skiprows=2)
             .filter(regex='Unnamed: [4,6]')
@@ -79,8 +61,6 @@ def get_gdp_df():
     gdp_df['Change'] = gdp_df['Diff'] < 0
     return gdp_df
 
-
-# In[5]:
 
 def get_recession_df():
     
@@ -94,16 +74,12 @@ def get_recession_df():
     return recession_start.append(rest[rest.index <= recession_end_index]).reset_index()
 
 
-# In[6]:
-
 def get_recession_start():
     '''Returns the year and quarter of the recession start time as a 
     string value in a format such as 2005q3'''
     recession = get_recession_df()
     return recession.iloc[0]['Quarter']
 
-
-# In[7]:
 
 def get_recession_end():
     '''Returns the year and quarter of the recession end time as a 
@@ -113,8 +89,6 @@ def get_recession_end():
     return recession.iloc[-1]['Quarter']
 
 
-# In[8]:
-
 def get_recession_bottom():
     '''Returns the year and quarter of the recession bottom time as a 
     string value in a format such as 2005q3'''
@@ -122,8 +96,6 @@ def get_recession_bottom():
     index = recession['GDP'].idxmin()
     return recession.iloc[index]['Quarter']
 
-
-# In[9]:
 
 def convert_housing_data_to_quarters():
     '''Converts the housing data to quarters and returns it as mean 
@@ -150,8 +122,6 @@ def convert_housing_data_to_quarters():
     housing_df.set_index(['State', 'RegionName'], inplace=True)
     return housing_df
 
-
-# In[27]:
 
 def run_ttest():
     '''First creates new data showing the decline or growth of housing prices
@@ -192,9 +162,3 @@ def run_ttest():
         better = "university town"
 
     return (different, result.pvalue, better)
-
-
-# In[ ]:
-
-
-

@@ -1,12 +1,3 @@
-
-# coding: utf-8
-
-# ---
-# 
-# _You are currently looking at **version 1.5** of this notebook. To download notebooks and datafiles, as well as get help on Jupyter notebooks in the Coursera platform, visit the [Jupyter Notebook FAQ](https://www.coursera.org/learn/python-data-analysis/resources/0dhYG) course resource._
-# 
-# ---
-
 # # Assignment 3 - More Pandas
 # This assignment requires more individual learning then the last one did - you are encouraged to check out the [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/) to find functions or methods you might not have used yet, or ask questions on [Stack Overflow](http://stackoverflow.com/) and tag them as pandas and python related. And of course, the discussion forums are open for interaction with your peers and the course staff.
 
@@ -57,13 +48,9 @@
 # 
 # *This function should return a DataFrame with 20 columns and 15 entries.*
 
-# In[1]:
-
 import pandas as pd
 import numpy as np
 
-
-# In[64]:
 
 def get_Energy():
     energy = pd.read_excel('Energy Indicators.xls', skiprows =17, skip_footer=38)
@@ -80,8 +67,6 @@ def get_Energy():
     return energy
 
 
-# In[56]:
-
 def get_GDP():
     GDP = pd.read_csv('world_bank.csv', skiprows=4)
     replace_dict = {"Country Name":{"Korea, Rep.": "South Korea", 
@@ -92,15 +77,10 @@ def get_GDP():
     return GDP
 
 
-# In[57]:
-
 # now load sciamago data
 def get_ScimEn():
     ScimEn = pd.read_excel('scimagojr-3.xlsx')
     return ScimEn
-
-
-# In[19]:
 
 
 def answer_one():
@@ -124,8 +104,6 @@ def answer_one():
 # 
 # *This function should return a single number.*
 
-# In[67]:
-
 def answer_two():
     energy = get_Energy()
     GDP = get_GDP()
@@ -141,8 +119,6 @@ def answer_two():
     return n_GDP_energy_ScimEn - n_dataSet
 
 
-# <br>
-# 
 # Answer the following questions in the context of only the top 15 countries by Scimagojr Rank (aka the DataFrame returned by `answer_one()`)
 
 # ### Question 3 (6.6%)
@@ -150,7 +126,6 @@ def answer_two():
 # 
 # *This function should return a Series named `avgGDP` with 15 countries and their average GDP sorted in descending order.*
 
-# In[31]:
 
 def answer_three():
     Top15 = answer_one()
@@ -165,7 +140,6 @@ def answer_three():
 # 
 # *This function should return a single number.*
 
-# In[35]:
 
 def answer_four():
     Top15 = answer_one()
@@ -182,7 +156,6 @@ def answer_four():
 # 
 # *This function should return a single number.*
 
-# In[37]:
 
 def answer_five():
     Top15 = answer_one()
@@ -194,7 +167,6 @@ def answer_five():
 # 
 # *This function should return a tuple with the name of the country and the percentage.*
 
-# In[44]:
 
 def answer_six():
     Top15 = answer_one()
@@ -209,7 +181,6 @@ def answer_six():
 # 
 # *This function should return a tuple with the name of the country and the ratio.*
 
-# In[51]:
 
 def answer_seven():
     Top15 = answer_one()
@@ -225,7 +196,6 @@ def answer_seven():
 # 
 # *This function should return a single string value.*
 
-# In[76]:
 
 def answer_eight():
     Top15 = answer_one()
@@ -243,7 +213,6 @@ def answer_eight():
 # 
 # *(Optional: Use the built-in function `plot9()` to visualize the relationship between Energy Supply per Capita vs. Citable docs per Capita)*
 
-# In[77]:
 
 def answer_nine():
     Top15 = answer_one()
@@ -251,8 +220,6 @@ def answer_nine():
     Top15['Citable docs per Capita'] = Top15['Citable documents'] / Top15['PopEst']
     return Top15['Citable docs per Capita'].corr(Top15['Energy Supply per Capita'])
 
-
-# In[79]:
 
 def plot9():
     import matplotlib as plt
@@ -264,17 +231,11 @@ def plot9():
     Top15.plot(x='Citable docs per Capita', y='Energy Supply per Capita', kind='scatter', xlim=[0, 0.0006])
 
 
-# In[80]:
-
-# plot9() # Be sure to comment out plot9() before submitting the assignment!
-
-
 # ### Question 10 (6.6%)
 # Create a new column with a 1 if the country's % Renewable value is at or above the median for all countries in the top 15, and a 0 if the country's % Renewable value is below the median.
 # 
 # *This function should return a series named `HighRenew` whose index is the country name sorted in ascending order of rank.*
 
-# In[86]:
 
 def answer_ten():
     Top15 = answer_one()
@@ -307,7 +268,6 @@ def answer_ten():
 # 
 # *This function should return a DataFrame with index named Continent `['Asia', 'Australia', 'Europe', 'North America', 'South America']` and columns `['size', 'sum', 'mean', 'std']`*
 
-# In[118]:
 
 def answer_eleven():
     Top15 = answer_one()
@@ -338,7 +298,6 @@ def answer_eleven():
 # 
 # *This function should return a __Series__ with a MultiIndex of `Continent`, then the bins for `% Renewable`. Do not include groups with no countries.*
 
-# In[123]:
 
 def answer_twelve():
     Top15 = answer_one()
@@ -370,7 +329,6 @@ def answer_twelve():
 # 
 # *This function should return a Series `PopEst` whose index is the country name and whose values are the population estimate string.*
 
-# In[125]:
 
 def answer_thirteen():
     Top15 = answer_one()
@@ -382,7 +340,6 @@ def answer_thirteen():
 # 
 # Use the built in function `plot_optional()` to see an example visualization.
 
-# In[ ]:
 
 def plot_optional():
     import matplotlib as plt
@@ -397,9 +354,4 @@ def plot_optional():
         ax.annotate(txt, [Top15['Rank'][i], Top15['% Renewable'][i]], ha='center')
 
     print("This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
-
-
-# In[ ]:
-
-#plot_optional() # Be sure to comment out plot_optional() before submitting the assignment!
 
